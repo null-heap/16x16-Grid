@@ -1,7 +1,7 @@
 .firstRow > div {
     width: 40px;
     height: 40px;
-    border: 2px solid red;
+    border: 1.5px solid red;
 }
 
 .firstRow {
@@ -27,8 +27,6 @@
     display: flex;
     justify-content:space-between;
     align-items: center; 
-    /* margin: 0 auto; */
-    border: 5px solid green;
 }
 
 #sizePrompt{

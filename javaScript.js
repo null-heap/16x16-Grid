@@ -3,8 +3,7 @@ let columns = 16;
 let mainDiv = document.querySelector('#main');
 let sizePrompt = document.querySelector('#sizePrompt');
 
-let divArray = createGrid(rows, columns);
-// removeGrid(divArray);
+let divArray = createGrid(rows, columns); //used to keep track of the current grid
 
 sizePrompt.addEventListener('click', () =>{
     rows = Number(prompt("Enter grid size under 100"));
@@ -30,12 +29,20 @@ const hoverArray = [];
 mainDiv.addEventListener('mouseover',(e) =>{
     if( e.target !== mainDiv && e.target.className !== "firstRow") {
     let target = e.target;
-    target.style.cssText = `background-color: yellow`;
     
+    
+    //choose random colors for random hover backgrounds
+    let red = Math.floor(Math.random() * 255);
+    let green = Math.floor(Math.random() * 255);
+    let blue = Math.floor(Math.random() * 255);
+    let alpha = Number((Math.random()).toFixed(1));
+    console.log(alpha);
 
+    target.style.cssText = `background-color:rgba(${red},${green},${blue},${alpha})`
+    
     //makes snake like affect 
     hoverArray.push(target);
-    if(count == 16){
+    if(count == 16){// after how many blocks should first block be transparent
         let temp = hoverArray.shift();
         temp.style.cssText = 'background-color: transparent';
         count--;
