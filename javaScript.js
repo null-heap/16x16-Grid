@@ -8,7 +8,7 @@ let divArray = createGrid(rows, columns); //used to keep track of the current gr
 sizePrompt.addEventListener('click', () =>{
     rows = Number(prompt("Enter grid size under 100"));
     columns = rows + 1;
-    if(rows <= 100){
+    if(rows <= 100 && rows != 0){
 
     
     removeGrid(divArray);
@@ -39,7 +39,7 @@ mainDiv.addEventListener('mouseover',(e) =>{
     console.log(alpha);
 
     target.style.cssText = `background-color:rgba(${red},${green},${blue},${alpha})`
-    
+
     //makes snake like affect 
     hoverArray.push(target);
     if(count == 16){// after how many blocks should first block be transparent
