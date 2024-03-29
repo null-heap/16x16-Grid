@@ -1,27 +1,18 @@
 let rows = 16;
-let columns = 16;
 let mainDiv = document.querySelector('#main');
 let sizePrompt = document.querySelector('#sizePrompt');
 
-let divArray = createGrid(rows, columns); //used to keep track of the current grid
+createGrid(rows); //used to keep track of the current grid
 
 sizePrompt.addEventListener('click', () =>{
     rows = Number(prompt("Enter grid size under 100"));
-    columns = rows + 1;
     if(rows <= 100 && rows != 0){
-
-    
-    removeGrid(divArray);
-    divArray = createGrid(rows, columns);
+    removeGrid();
+    createGrid(rows);
     }else{
         alert("choose a number under 100");
     }
 })
-
-
-
-
-
 
 //hovering effect
 let count = 0;
@@ -35,10 +26,8 @@ mainDiv.addEventListener('mouseover',(e) =>{
     let red = Math.floor(Math.random() * 255);
     let green = Math.floor(Math.random() * 255);
     let blue = Math.floor(Math.random() * 255);
-    let alpha = Number((Math.random()).toFixed(1));
-    console.log(alpha);
 
-    target.style.cssText = `background-color:rgba(${red},${green},${blue},${alpha})`
+    target.style.cssText = `background-color:rgb(${red},${green},${blue})`
 
     //makes snake like affect 
     hoverArray.push(target);
@@ -48,37 +37,26 @@ mainDiv.addEventListener('mouseover',(e) =>{
         count--;
     }
     count ++;
-
     }
-
-
 })
 
-
-function createGrid(rows, columns){
+function createGrid(rows){
+    let columns = rows + 1;
     let mainDiv = document.querySelector('#main');
 
-    const divArray = [];
     for(let i = 0;i < rows; i++){
         let temp = document.createElement('div');
         temp.classList.toggle("firstRow");
-        divArray[i] = [];
-        divArray[i][0] = temp;
-        mainDiv.appendChild(divArray[i][0]);
+        mainDiv.appendChild(temp);
     
         for(let j = 1;j< columns; j++){
-            divArray[i][j] = document.createElement('div');
-            divArray[i][0].appendChild(divArray[i][j]);
+            let innerDiv = document.createElement('div');
+            temp.appendChild(innerDiv);
         }
     }
-    return divArray;
 }
 
-function removeGrid(array){
+function removeGrid(){
     let mainDiv = document.querySelector('#main');
-    let rows = array.length;
-    for(let i = 0;i < rows; i++){
-        mainDiv.removeChild(array[i][0]);
-    }
-    
+    mainDiv.textContent = " ";
 }
